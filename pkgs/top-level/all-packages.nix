@@ -15534,6 +15534,8 @@ with pkgs;
 
   particl-core = self.altcoins.particl-core;
 
+  plaid2qif = python3.pkgs.callPackage ../applications/misc/plaid2qif { };
+
   aumix = callPackage ../applications/audio/aumix {
     gtkGUI = false;
   };
