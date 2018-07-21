@@ -17443,6 +17443,8 @@ with pkgs;
 
   pijul = callPackage ../applications/version-management/pijul {};
 
+  plaid2qif = python3Packages.callPackage ../applications/office/plaid2qif { };
+
   plank = callPackage ../applications/misc/plank { };
 
   planner = callPackage ../applications/office/planner { };
