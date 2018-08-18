@@ -1,0 +1,40 @@
+From aa856edff31126d16e32f820b3652f6fecdfb4c6 Mon Sep 17 00:00:00 2001
+From: Benjamin Hipple <bhipple@protonmail.com>
+Date: Sat, 22 Sep 2018 13:10:20 -0400
+Subject: [PATCH] Link mkl and openmp dependencies
+
+---
+ CMakeLists.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 991d75e..41e89c5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -308,6 +308,12 @@ target_include_directories(osqpstatic
+                            PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+                                   "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}/osqp>")
+ 
++if (ENABLE_MKL_PARDISO)
++    find_library(mkl_rt REQUIRED)
++    find_library(omp REQUIRED)
++    target_link_libraries(osqpstatic mkl_rt omp)
++endif()
++
+ # Install Static Library
+ # ----------------------------------------------
+ 
+@@ -339,6 +345,10 @@ if (NOT PYTHON AND NOT MATLAB AND NOT R_LANG)
+     # NB: Add all the linear system solvers here
+     add_library (osqp SHARED ${osqp_src} ${osqp_headers} ${linsys_solvers})
+ 
++    if (ENABLE_MKL_PARDISO)
++        target_link_libraries(osqp mkl_rt omp)
++    endif()
++
+     # Include directories for linear system solvers
+     target_include_directories(osqp PRIVATE ${linsys_solvers_includes})
+ 
+-- 
+2.12.2
+
