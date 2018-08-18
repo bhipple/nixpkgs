@@ -20874,6 +20874,10 @@ with pkgs;
 
   openspecfun = callPackage ../development/libraries/science/math/openspecfun {};
 
+  osqp = callPackage ../development/libraries/science/math/osqp {
+    inherit (pythonPackages) numpy scipy;
+  };
+
   planarity = callPackage ../development/libraries/science/math/planarity { };
 
   scalapack = callPackage ../development/libraries/science/math/scalapack {
