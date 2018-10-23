@@ -21126,6 +21126,12 @@ with pkgs;
     mpi = openmpi;
   };
 
+  osqp = callPackage ../development/libraries/science/math/osqp {
+    inherit (pythonPackages) numpy scipy;
+    withMkl = true;
+  };
+
+
   scs = callPackage ../development/libraries/science/math/scs {
     liblapack = liblapackWithoutAtlas;
   };
