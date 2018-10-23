@@ -18593,7 +18593,7 @@ with pkgs;
   rclone = callPackage ../applications/networking/sync/rclone { };
 
   rclone-browser = libsForQt5.callPackage ../applications/networking/sync/rclone/browser.nix { };
-  
+
   rcs = callPackage ../applications/version-management/rcs { };
 
   rdesktop = callPackage ../applications/networking/remote/rdesktop { };
@@ -21071,7 +21071,9 @@ with pkgs;
 
   m4rie = callPackage ../development/libraries/science/math/m4rie { };
 
-  mkl = callPackage ../development/libraries/science/math/mkl { };
+  mkl = callPackage ../development/libraries/science/math/mkl {
+    inherit (llvmPackages) openmp;
+  };
 
   nasc = callPackage ../applications/science/math/nasc { };
 

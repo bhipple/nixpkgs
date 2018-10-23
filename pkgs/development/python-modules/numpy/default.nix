@@ -71,7 +71,7 @@ in buildPythonPackage rec {
     inherit blasImplementation cfg;
   };
 
-  doCheck = blasImplementation != "mkl";
+  doCheck = true; #blasImplementation != "mkl";
 
   # Disable two tests
   # - test_f2py: f2py isn't yet on path.
