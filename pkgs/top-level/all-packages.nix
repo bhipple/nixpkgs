@@ -21268,6 +21268,8 @@ with pkgs;
 
   mkl = callPackage ../development/libraries/science/math/mkl { };
 
+  mkl-dnn = callPackage ../development/libraries/science/math/mkl-dnn { };
+
   nasc = callPackage ../applications/science/math/nasc { };
 
   openblas = callPackage ../development/libraries/science/math/openblas { };
