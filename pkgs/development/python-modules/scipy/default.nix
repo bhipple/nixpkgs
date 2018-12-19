@@ -2,11 +2,11 @@
 
 buildPythonPackage rec {
   pname = "scipy";
-  version = "1.1.0";
+  version = "1.2.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "878352408424dffaa695ffedf2f9f92844e116686923ed9aa8626fc30d32cfd1";
+    sha256 = "0512dz8ad00gs6x6yciv4mc4mwnsg9p815m8p6yn03nqir6458ji";
   };
 
   checkInputs = [ nose pytest ];
@@ -18,10 +18,6 @@ buildPythonPackage rec {
   prePatch = ''
     rm scipy/linalg/tests/test_lapack.py
   '';
-
-  # INTERNALERROR, solved with https://github.com/scipy/scipy/pull/8871
-  # however, it does not apply cleanly.
-  doCheck = false;
 
   preConfigure = ''
     sed -i '0,/from numpy.distutils.core/s//import setuptools;from numpy.distutils.core/' setup.py
