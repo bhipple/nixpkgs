@@ -30,6 +30,9 @@ stdenv.mkDerivation (rec {
   setOutputFlags = false;
   outputDoc = "dev"; # single tiny man3 page
 
+  enableParallelBuilding = true;
+  doCheck = true;
+
   configureFlags = stdenv.lib.optional shared "--shared"
                    ++ stdenv.lib.optional (static && !shared) "--static";
 
@@ -79,6 +82,7 @@ stdenv.mkDerivation (rec {
     homepage = https://zlib.net;
     description = "Lossless data-compression library";
     license = licenses.zlib;
+    maintainers = [ ];
     platforms = platforms.all;
   };
 } // stdenv.lib.optionalAttrs (stdenv.hostPlatform != stdenv.buildPlatform) {
