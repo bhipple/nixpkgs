@@ -8,7 +8,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "aws-sdk-cpp-${version}";
+  pname = "aws-sdk-cpp";
   version = "1.7.90";
 
   src = fetchFromGitHub {
@@ -43,10 +43,16 @@ stdenv.mkDerivation rec {
   ] ++ lib.optional (apis != ["*"])
     "-DBUILD_ONLY=${lib.concatStringsSep ";" apis}";
 
-  preConfigure =
-    ''
-      rm aws-cpp-sdk-core-tests/aws/auth/AWSCredentialsProviderTest.cpp
-    '';
+  preConfigure = ''
+    rm aws-cpp-sdk-core-tests/aws/auth/AWSCredentialsProviderTest.cpp
+  '';
+
+  postInstall = ''
+    for f in $dev/lib/pkgconfig/*.pc; do
+      sed -i 's|includedir=.*|includedir=$dev/include|' "$f"
+      sed -i 's|libdir=.*|libdir=$out/lib|' "$f"
+    done
+  '';
 
   __darwinAllowLocalNetworking = true;
 
