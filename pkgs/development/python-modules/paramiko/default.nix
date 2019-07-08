@@ -1,10 +1,11 @@
-{ pkgs
+{ lib
 , buildPythonPackage
 , fetchPypi
-, cryptography
 , bcrypt
-, pynacl
+, cryptography
+, gssapi
 , pyasn1
+, pynacl
 , pytest
 , pytest-relaxed
 , mock
@@ -12,15 +13,15 @@
 
 buildPythonPackage rec {
   pname = "paramiko";
-  version = "2.4.2";
+  version = "2.6.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "a8975a7df3560c9f1e2b43dc54ebd40fd00a7017392ca5445ce7df409f900fcb";
+    sha256 = "f4b2edfa0d226b70bd4ca31ea7e389325990283da23465d572ed1f70a7583041";
   };
 
   checkInputs = [ pytest mock pytest-relaxed ];
-  propagatedBuildInputs = [ bcrypt cryptography pynacl pyasn1 ];
+  propagatedBuildInputs = [ bcrypt cryptography gssapi pynacl pyasn1 ];
 
   __darwinAllowLocalNetworking = true;
 
@@ -29,8 +30,8 @@ buildPythonPackage rec {
     pytest tests --ignore=tests/test_sftp.py
   '';
 
-  meta = with pkgs.lib; {
-    homepage = "https://github.com/paramiko/paramiko/";
+  meta = with lib; {
+    homepage = "https://www.paramiko.org";
     description = "Native Python SSHv2 protocol library";
     license = licenses.lgpl21Plus;
     maintainers = with maintainers; [ aszlig ];
