@@ -5364,6 +5364,8 @@ in {
 
   scp = callPackage ../development/python-modules/scp {};
 
+  scs = callPackage ../development/python-modules/scs { };
+
   seaborn = callPackage ../development/python-modules/seaborn { };
 
   seabreeze = callPackage ../development/python-modules/seabreeze { };
