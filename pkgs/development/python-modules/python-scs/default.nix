@@ -6,6 +6,7 @@
 , numpy
 , blas
 , scipy
+, scs
   # check inputs
 , nose
 }:
@@ -23,6 +24,13 @@ buildPythonPackage rec {
     sha256 = "01ghvyylxql7jvdcwy65wf7y5qykqyqkbysy402zfhgmm9dxizgv";
     fetchSubmodules = true;
   };
+
+  # Upstream ships a git submodule for the C module and tries to build it from
+  # src. For the Nix distribution, ensure that we use the same version.
+  preConfigure = ''
+    rm -r scs
+    ln -s ${scs.src} scs
+  '';
 
   buildInputs = [
     liblapack

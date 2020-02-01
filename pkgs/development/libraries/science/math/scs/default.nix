@@ -4,6 +4,7 @@ stdenv.mkDerivation rec {
   pname = "scs";
   version = "2.0.2";
 
+  # N.B. when updating, also look at python-scs
   src = fetchFromGitHub {
     owner = "cvxgrp";
     repo = "scs";
