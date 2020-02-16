@@ -15384,7 +15384,7 @@ in
   miniHttpd = callPackage ../servers/http/mini-httpd {};
 
   mlflow-server = callPackage ../servers/mlflow-server { };
-  
+
   mlmmj = callPackage ../servers/mail/mlmmj { };
 
   moodle = callPackage ../servers/web-apps/moodle { };
@@ -19114,6 +19114,8 @@ in
   };
 
   gjay = callPackage ../applications/audio/gjay { };
+
+  hits-of-code = callPackage ../applications/misc/hits-of-code { };
 
   photivo = callPackage ../applications/graphics/photivo { };
 
