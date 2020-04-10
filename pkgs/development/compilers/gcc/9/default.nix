@@ -3,6 +3,7 @@
 , langObjC ? stdenv.targetPlatform.isDarwin
 , langObjCpp ? stdenv.targetPlatform.isDarwin
 , langGo ? false
+, langJit ? false
 , profiledCompiler ? false
 , staticCompiler ? false
 , enableShared ? true
@@ -194,6 +195,7 @@ stdenv.mkDerivation ({
       langCC
       langFortran
       langGo
+      langJit
       langObjC
       langObjCpp
       ;

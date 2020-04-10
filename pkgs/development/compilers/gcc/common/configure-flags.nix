@@ -16,6 +16,7 @@
 , langCC
 , langFortran
 , langJava ? false, javaAwtGtk ? false, javaAntlr ? null, javaEcj ? null
+, langJit ? false
 , langGo
 , langObjC
 , langObjCpp
@@ -115,6 +116,7 @@ let
           ++ lib.optional langCC       "c++"
           ++ lib.optional langFortran  "fortran"
           ++ lib.optional langJava     "java"
+          ++ lib.optional langJit      "jit"
           ++ lib.optional langGo       "go"
           ++ lib.optional langObjC     "objc"
           ++ lib.optional langObjCpp   "obj-c++"
@@ -124,6 +126,7 @@ let
       }"
     ]
 
+    ++ lib.optional langJit "--enable-host-shared"
     ++ (if (enableMultilib || targetPlatform.isAvr)
       then ["--enable-multilib" "--disable-libquadmath"]
       else ["--disable-multilib"])
