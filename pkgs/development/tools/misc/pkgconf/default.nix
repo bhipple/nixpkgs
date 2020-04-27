@@ -4,10 +4,11 @@ stdenv.mkDerivation rec {
   pname = "pkgconf";
   version = "1.6.3";
 
-  src = fetchurl {
-    url = "https://distfiles.dereferenced.org/${pname}/${pname}-${version}.tar.xz";
-    sha256 = "04525vv0y849vvc2pi60g5wd9fjp1wbhra2lniifi82y1ldv7w31";
-  };
+  # src = fetchurl {
+  #   url = "https://distfiles.dereferenced.org/${pname}/${pname}-${version}.tar.xz";
+  #   sha256 = "04525vv0y849vvc2pi60g5wd9fjp1wbhra2lniifi82y1ldv7w31";
+  # };
+  src = /home/bhipple/src/pkgconf;
 
   meta = with stdenv.lib; {
     description = "Package compiler and linker metadata toolkit";
